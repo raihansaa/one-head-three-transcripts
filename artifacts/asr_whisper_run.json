@@ -1,0 +1,31 @@
+{
+  "system": "ASR-A",
+  "checkpoint": "openai/whisper-large-v3",
+  "revision": "06f233fe06e710322aca913c1bc4249a0d71fce1",
+  "decoding": {
+    "language": "bn",
+    "task": "transcribe",
+    "num_beams": 2,
+    "early_stopping": true,
+    "do_sample": false,
+    "temperature": 0.0,
+    "return_timestamps": false,
+    "max_new_tokens": 200
+  },
+  "device": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "precision": "torch.float16",
+  "batch_size": 8,
+  "total_inference_seconds": 4521.24,
+  "transformers_version": "5.14.1",
+  "torch_version": "2.11.0+cu128",
+  "fine_tuned_on_banglamuse": false,
+  "normalization_version": "v1",
+  "resampling_method": "librosa.load(sr=16000, mono=True, res_type='soxr_hq')",
+  "target_sample_rate": 16000,
+  "n_utterances": 3996,
+  "n_empty_normalized_outputs": 0,
+  "n_failed_utterances": 0,
+  "failed_utterance_ids": [],
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0"
+}

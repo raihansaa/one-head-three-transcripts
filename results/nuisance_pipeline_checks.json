@@ -1,0 +1,267 @@
+{
+  "numeric_features": [
+    "bytes_per_second",
+    "bit_rate",
+    "clipping_fraction",
+    "dc_offset",
+    "leading_rms",
+    "trailing_rms",
+    "leading_noise_floor",
+    "trailing_noise_floor"
+  ],
+  "categorical_features": [
+    "sample_rate",
+    "num_channels",
+    "audio_format",
+    "codec"
+  ],
+  "preprocessing": "median imputation, one-hot (handle_unknown=ignore), StandardScaler over all columns, per-row L2 normalization; all fitted on the fold's training partition only",
+  "input_dimensions": {
+    "text_only_head": 768,
+    "speech_fusion_head": 2816,
+    "nuisance_fusion_head": 785,
+    "nuisance_branch": 17
+  },
+  "parameter_counts": {
+    "text_only_head": 198914,
+    "speech_fusion_head": 727298,
+    "nuisance_fusion_head": 203300
+  },
+  "folds": [
+    {
+      "outer_fold": 0,
+      "fitted_on": "training partition (outer training minus inner validation)",
+      "one_hot_categories": {
+        "sample_rate": [
+          "16000",
+          "44100",
+          "48000"
+        ],
+        "num_channels": [
+          "1",
+          "2"
+        ],
+        "audio_format": [
+          "MP3",
+          "OGG"
+        ],
+        "codec": [
+          "mp3",
+          "opus"
+        ]
+      },
+      "zero_variance_training_columns": 0,
+      "training": {
+        "n_rows": 2877,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      },
+      "validation": {
+        "n_rows": 320,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      },
+      "test": {
+        "n_rows": 799,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      }
+    },
+    {
+      "outer_fold": 1,
+      "fitted_on": "training partition (outer training minus inner validation)",
+      "one_hot_categories": {
+        "sample_rate": [
+          "16000",
+          "44100",
+          "48000"
+        ],
+        "num_channels": [
+          "1",
+          "2"
+        ],
+        "audio_format": [
+          "MP3",
+          "OGG"
+        ],
+        "codec": [
+          "mp3",
+          "opus"
+        ]
+      },
+      "zero_variance_training_columns": 0,
+      "training": {
+        "n_rows": 2875,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      },
+      "validation": {
+        "n_rows": 320,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      },
+      "test": {
+        "n_rows": 801,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      }
+    },
+    {
+      "outer_fold": 2,
+      "fitted_on": "training partition (outer training minus inner validation)",
+      "one_hot_categories": {
+        "sample_rate": [
+          "16000",
+          "44100",
+          "48000"
+        ],
+        "num_channels": [
+          "1",
+          "2"
+        ],
+        "audio_format": [
+          "MP3",
+          "OGG"
+        ],
+        "codec": [
+          "mp3",
+          "opus"
+        ]
+      },
+      "zero_variance_training_columns": 0,
+      "training": {
+        "n_rows": 2877,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      },
+      "validation": {
+        "n_rows": 319,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      },
+      "test": {
+        "n_rows": 800,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      }
+    },
+    {
+      "outer_fold": 3,
+      "fitted_on": "training partition (outer training minus inner validation)",
+      "one_hot_categories": {
+        "sample_rate": [
+          "16000",
+          "44100",
+          "48000"
+        ],
+        "num_channels": [
+          "1",
+          "2"
+        ],
+        "audio_format": [
+          "MP3",
+          "OGG"
+        ],
+        "codec": [
+          "mp3",
+          "opus"
+        ]
+      },
+      "zero_variance_training_columns": 0,
+      "training": {
+        "n_rows": 2882,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      },
+      "validation": {
+        "n_rows": 318,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      },
+      "test": {
+        "n_rows": 796,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      }
+    },
+    {
+      "outer_fold": 4,
+      "fitted_on": "training partition (outer training minus inner validation)",
+      "one_hot_categories": {
+        "sample_rate": [
+          "16000",
+          "44100",
+          "48000"
+        ],
+        "num_channels": [
+          "1",
+          "2"
+        ],
+        "audio_format": [
+          "MP3",
+          "OGG"
+        ],
+        "codec": [
+          "mp3",
+          "opus"
+        ]
+      },
+      "zero_variance_training_columns": 0,
+      "training": {
+        "n_rows": 2877,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      },
+      "validation": {
+        "n_rows": 319,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      },
+      "test": {
+        "n_rows": 800,
+        "missing_values": 0,
+        "rows_with_unseen_category": 0,
+        "zero_norm_rows": 0
+      }
+    }
+  ],
+  "nuisance_only_sanity_check": {
+    "pooled_oof_macro_f1": 0.6527322495280081,
+    "mean_fold_macro_f1": 0.6527310113244964,
+    "table5_mean_fold_reference": 0.6687
+  },
+  "edge_window_levels_re_full_utterance": {
+    "leading": {
+      "quantiles_db": {
+        "0.1": -79.57102709649016,
+        "0.5": -68.61562189634577,
+        "0.9": -32.02178739837933
+      },
+      "fraction_above_minus_10_db": 0.0037537537537537537,
+      "fraction_above_minus_20_db": 0.06756756756756757
+    },
+    "trailing": {
+      "quantiles_db": {
+        "0.1": -37.169986312672805,
+        "0.5": -21.11539120214508,
+        "0.9": -5.061424208896509
+      },
+      "fraction_above_minus_10_db": 0.21996996996996998,
+      "fraction_above_minus_20_db": 0.474974974974975
+    }
+  }
+}

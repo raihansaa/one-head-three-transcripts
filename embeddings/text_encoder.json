@@ -1,0 +1,26 @@
+{
+  "checkpoint": "csebuetnlp/banglabert",
+  "used_fallback": false,
+  "frozen": true,
+  "pooling": "attention-mask-aware mean over last_hidden_state",
+  "max_length": 64,
+  "gold_keyed_by": "sentence_id",
+  "asr_keyed_by": "utterance_id",
+  "shapes": {
+    "gold": [
+      1000,
+      768
+    ],
+    "whisper": [
+      3996,
+      768
+    ],
+    "indic": [
+      3996,
+      768
+    ]
+  },
+  "transformers_version": "5.14.1",
+  "trained_on_banglamuse": false,
+  "revision": "9ce791f330578f50da6bc52b54205166fb5d1c8c"
+}

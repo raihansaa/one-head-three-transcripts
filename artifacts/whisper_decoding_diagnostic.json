@@ -1,0 +1,124 @@
+{
+  "checkpoint": "openai/whisper-large-v3",
+  "n_utterances": 300,
+  "per_speaker": 75,
+  "sample_seed": 20260807,
+  "audio_control": "ASR-B reads identical waveforms via the same load_audio() and scores 0.276 WER, so audio handling is not implicated",
+  "configurations": {
+    "greedy_bn": {
+      "wer": 0.7440633245382586,
+      "cer": 0.466996991682888,
+      "romanization_rate": 0.31,
+      "empty_rate": 0.0,
+      "seconds": 115.8,
+      "decoder_prefix_sample": [
+        [
+          "à¦",
+          "¶",
+          "à",
+          "§ģ",
+          "à¦"
+        ],
+        [
+          "à¦",
+          "Ĩ",
+          "à¦",
+          "®",
+          "à¦"
+        ],
+        [
+          "à¦",
+          "ķ",
+          "à",
+          "§ģ",
+          "à"
+        ]
+      ],
+      "example_outputs": [
+        "শুন্দর চলোচিক্রে দেখা জাই জিবনের উষ্ণ রঙ্গ",
+        "আমি নিশ্রিত করন দেছি যে সাপ কিছু ঠিকটা খাবে",
+        "কুরুজন্দের প্রতিস্রধ্ধা প্রদোষন কডাওছেদ"
+      ]
+    },
+    "beam5_bn": {
+      "wer": 0.6786279683377309,
+      "cer": 0.351973102105822,
+      "romanization_rate": 0.023333333333333334,
+      "empty_rate": 0.0,
+      "seconds": 6457.8,
+      "decoder_prefix_sample": [
+        [
+          "à¦",
+          "¶",
+          "à",
+          "§ģ",
+          "à¦"
+        ],
+        [
+          "à¦",
+          "Ĩ",
+          "à¦",
+          "®",
+          "à¦"
+        ],
+        [
+          "à¦",
+          "ķ",
+          "à",
+          "§ģ",
+          "à"
+        ]
+      ],
+      "example_outputs": [
+        "শুন্দোর চলোচিক্রে দেখা জাই জিবনের উষ্ণ রঙ্গ",
+        "আমি নিশ্রিত করন দিছি যে সাপ কিছু ঠিক্টা খাবে",
+        "কুরুজন্দের প্রতিস্রধ্ধা প্রদোষন কারা উচেদ"
+      ]
+    },
+    "greedy_autodetect": {
+      "wer": 0.749868073878628,
+      "cer": 0.48115377809237303,
+      "romanization_rate": 0.31,
+      "empty_rate": 0.0,
+      "seconds": 199.7,
+      "decoder_prefix_sample": [
+        [
+          "à¦",
+          "¶",
+          "à",
+          "§ģ",
+          "à¦"
+        ],
+        [
+          "à¦",
+          "Ĩ",
+          "à¦",
+          "®",
+          "à¦"
+        ],
+        [
+          "à¦",
+          "ķ",
+          "à",
+          "§ģ",
+          "à"
+        ]
+      ],
+      "example_outputs": [
+        "শুন্দর চলোচিক্রে দেখা জাই জিবনের উষ্ণ রঙ্গ",
+        "আমি নিশ্রিত করন দেছি যে সাপ কিছু ঠিকটা খাবে",
+        "কুরুজন্দের প্রতিস্রধ্ধা প্রদোষন কডাওছেদ"
+      ]
+    }
+  },
+  "verdict": {
+    "beam5_bn": {
+      "wer_change_vs_greedy_bn": -0.0654,
+      "relative_change": -0.088
+    },
+    "greedy_autodetect": {
+      "wer_change_vs_greedy_bn": 0.0058,
+      "relative_change": 0.008
+    }
+  }
+}

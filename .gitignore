@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# BanglaMUSE audio: download separately (see README)
+Multimodal Dataset/
+
+# Cached encoder outputs: published as a release asset (embeddings.zip)
+embeddings/*.npz
+
+# Build and release staging
+release_assets/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

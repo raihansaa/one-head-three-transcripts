@@ -1,0 +1,153 @@
+{
+  "all_checks_pass": true,
+  "decision_rule": "seed-averaged prob_positive >= 0.5",
+  "checks": {
+    "score C1": {
+      "paper": 0.9397,
+      "recomputed": 0.9397,
+      "ok": true
+    },
+    "score C2": {
+      "paper": 0.976,
+      "recomputed": 0.976,
+      "ok": true
+    },
+    "score C3": {
+      "paper": 0.6352,
+      "recomputed": 0.6352,
+      "ok": true
+    },
+    "score C4": {
+      "paper": 0.8672,
+      "recomputed": 0.8672,
+      "ok": true
+    },
+    "score C5": {
+      "paper": 0.9812,
+      "recomputed": 0.9812,
+      "ok": true
+    },
+    "score C6": {
+      "paper": 0.6767,
+      "recomputed": 0.6767,
+      "ok": true
+    },
+    "score C7": {
+      "paper": 0.8948,
+      "recomputed": 0.8948,
+      "ok": true
+    },
+    "score A1": {
+      "paper": 0.8503,
+      "recomputed": 0.8503,
+      "ok": true
+    },
+    "score A2": {
+      "paper": 0.9297,
+      "recomputed": 0.9297,
+      "ok": true
+    },
+    "score A3": {
+      "paper": 0.9244,
+      "recomputed": 0.9244,
+      "ok": true
+    },
+    "score A4": {
+      "paper": 0.9567,
+      "recomputed": 0.9567,
+      "ok": true
+    },
+    "score X1": {
+      "paper": 0.9088,
+      "recomputed": 0.9088,
+      "ok": true
+    },
+    "score X2": {
+      "paper": 0.8148,
+      "recomputed": 0.8148,
+      "ok": true
+    },
+    "gap C2-C3": {
+      "paper": [
+        0.3408,
+        0.3164,
+        0.3653
+      ],
+      "recomputed": [
+        0.3408,
+        0.3164,
+        0.3653
+      ],
+      "ok": true
+    },
+    "gap C2-C4": {
+      "paper": [
+        0.1088,
+        0.0947,
+        0.1239
+      ],
+      "recomputed": [
+        0.1088,
+        0.0947,
+        0.1239
+      ],
+      "ok": true
+    },
+    "gap C5-C6": {
+      "paper": [
+        0.3045,
+        0.2821,
+        0.3276
+      ],
+      "recomputed": [
+        0.3045,
+        0.2821,
+        0.3276
+      ],
+      "ok": true
+    },
+    "gap C5-C7": {
+      "paper": [
+        0.0864,
+        0.0743,
+        0.0995
+      ],
+      "recomputed": [
+        0.0864,
+        0.0743,
+        0.0995
+      ],
+      "ok": true
+    },
+    "predicted positive rate C2": {
+      "paper": 50.0,
+      "recomputed": 50.0,
+      "ok": true
+    },
+    "predicted positive rate C3": {
+      "paper": 18.7,
+      "recomputed": 18.7,
+      "ok": true
+    },
+    "predicted positive rate C4": {
+      "paper": 38.9,
+      "recomputed": 38.9,
+      "ok": true
+    },
+    "counts": {
+      "paper": {
+        "recordings": 3996,
+        "sentence_groups": 998,
+        "positive": 1997,
+        "negative": 1999
+      },
+      "recomputed": {
+        "recordings": 3996,
+        "sentence_groups": 998,
+        "positive": 1997,
+        "negative": 1999
+      },
+      "ok": true
+    }
+  }
+}

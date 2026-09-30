@@ -1,0 +1,23 @@
+{
+  "feature_set": "primary Table 5 acquisition features",
+  "pipeline": "get_dummies + StandardScaler + LogisticRegression(C=1.0, max_iter=2000), fitted on outer-training rows of each fold",
+  "statistic": "pooled recording-level out-of-fold macro-F1",
+  "null": "labels shuffled between sentence groups (group exchangeability), broadcast to all recordings of a group; outer folds regenerated per permutation with the original splitter; whole pipeline refitted",
+  "n_permutations": 1000,
+  "permutation_seed": 20260922,
+  "observed_pooled_oof_macro_f1": 0.6687178934998095,
+  "observed_mean_fold_macro_f1": 0.6687284461481287,
+  "observed_folds_match_frozen_splits": true,
+  "null_mean": 0.49458934648669045,
+  "null_sd": 0.009435708314461305,
+  "null_quantiles": {
+    "0.025": 0.4760947414862541,
+    "0.5": 0.4942506122676487,
+    "0.975": 0.5122901331164711,
+    "0.99": 0.5157691180753197
+  },
+  "null_max": 0.5244337958158545,
+  "n_null_at_or_above_observed": 0,
+  "p_value": 0.000999000999000999,
+  "interpretation_limit": "Supports predictability relative to this group-exchangeability null only; does not remove session artifacts, identify the signal used by the speech encoder, or support inference to independently sampled recording sessions."
+}

@@ -1,0 +1,6 @@
+configuration,n_utterances,source,num_beams,max_new_tokens,wer,cer,romanization_rate,empty_rate,early_stopping,n_retokenized_at_or_above_budget_minus_1,max_retokenized_length
+greedy_bn,300,published Table 10 run (diagnose_whisper.py),1,128,0.7440633245382586,0.466996991682888,0.31,0.0,,,
+beam5_bn,300,published Table 10 run (diagnose_whisper.py),5,128,0.6786279683377309,0.351973102105822,0.023333333333333334,0.0,,,
+greedy_autodetect,300,published Table 10 run (diagnose_whisper.py),1,128,0.749868073878628,0.48115377809237303,0.31,0.0,,,
+greedy_bn (cached full-corpus greedy run),300,transcripts rescored on the same 300 IDs,1,128,0.7424802110817942,0.46628915236241375,0.31333333333333335,0.0,False,4.0,128.0
+beam2_bn (cached main run - the experiments' operating point),300,transcripts rescored on the same 300 IDs,2,200,0.691820580474934,0.36843036630684833,0.09,0.0,True,0.0,167.0

@@ -1,0 +1,21 @@
+model,protocol,speaker,macro_f1,accuracy,n
+speech_head,joint speaker-and-sentence holdout (post-review),f1,0.608742287112962,0.621,1000
+speech_head,joint speaker-and-sentence holdout (post-review),f2,0.6860619612418173,0.69,1000
+speech_head,joint speaker-and-sentence holdout (post-review),m1,0.6110009765420353,0.627254509018036,998
+speech_head,joint speaker-and-sentence holdout (post-review),m2,0.5546756473666163,0.6192384769539078,998
+speech_head,joint speaker-and-sentence holdout (post-review),pooled,0.6213153497720982,0.6393893893893894,3996
+nuisance_classifier,joint speaker-and-sentence holdout (post-review),f1,0.20742572940769702,0.255,1000
+nuisance_classifier,joint speaker-and-sentence holdout (post-review),f2,0.3379922944924892,0.495,1000
+nuisance_classifier,joint speaker-and-sentence holdout (post-review),m1,0.3229957273912225,0.4258517034068136,998
+nuisance_classifier,joint speaker-and-sentence holdout (post-review),m2,0.22331510742241434,0.22344689378757515,998
+nuisance_classifier,joint speaker-and-sentence holdout (post-review),pooled,0.332513270512715,0.34984984984984985,3996
+speech_head (C1),shared-speaker sentence-grouped CV (original protocol),f1,0.8809989289903609,0.881,1000
+speech_head (C1),shared-speaker sentence-grouped CV (original protocol),f2,0.9179986879790076,0.918,1000
+speech_head (C1),shared-speaker sentence-grouped CV (original protocol),m1,0.9719420848645501,0.9719438877755511,998
+speech_head (C1),shared-speaker sentence-grouped CV (original protocol),m2,0.9879755172856959,0.9879759519038076,998
+speech_head (C1),shared-speaker sentence-grouped CV (original protocol),pooled,0.9396895952659292,0.9396896896896897,3996
+nuisance_classifier,shared-speaker sentence-grouped CV (original protocol),f1,0.7106958082567838,0.726,1000
+nuisance_classifier,shared-speaker sentence-grouped CV (original protocol),f2,0.5828931384398985,0.589,1000
+nuisance_classifier,shared-speaker sentence-grouped CV (original protocol),m1,0.35161925846857356,0.5060120240480962,998
+nuisance_classifier,shared-speaker sentence-grouped CV (original protocol),m2,0.9224306659600777,0.9228456913827655,998
+nuisance_classifier,shared-speaker sentence-grouped CV (original protocol),pooled,0.6687178934998095,0.6859359359359359,3996

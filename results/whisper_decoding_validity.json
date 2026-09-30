@@ -1,0 +1,58 @@
+{
+  "sample_recovery": {
+    "greedy_wer_reproduced": false,
+    "published_greedy_wer": 0.7440633245382586,
+    "rescored_cached_greedy_wer": 0.7424802110817942,
+    "example_outputs_match": true
+  },
+  "main_run_audit": {
+    "whisper": {
+      "n_utterances": 3996,
+      "repetition_loop_ngram": 1,
+      "compression_ratio_above_2.4": 1,
+      "flagged_either": 2,
+      "insertion_rate_all": 0.08565824760837369,
+      "insertion_rate_unflagged": 0.08570284341209451,
+      "share_of_insertions_in_flagged": 0.0,
+      "hypothesis_to_reference_length_ratio_quantiles": {
+        "0.5": 1.0,
+        "0.9": 1.2,
+        "0.99": 1.5,
+        "1.0": 3.5
+      },
+      "length_ratio_above_1.5": 20,
+      "latin_script_outputs": 391,
+      "empty_outputs": 0,
+      "retokenized_length_max": 172,
+      "retokenized_length_p99": 125.0,
+      "at_or_near_token_cap": 0
+    },
+    "indic": {
+      "n_utterances": 3996,
+      "repetition_loop_ngram": 0,
+      "compression_ratio_above_2.4": 0,
+      "flagged_either": 0,
+      "insertion_rate_all": 0.01733178561421767,
+      "insertion_rate_unflagged": 0.01733178561421767,
+      "share_of_insertions_in_flagged": 0.0,
+      "hypothesis_to_reference_length_ratio_quantiles": {
+        "0.5": 1.0,
+        "0.9": 1.0909090909090908,
+        "0.99": 1.2,
+        "1.0": 1.5
+      },
+      "length_ratio_above_1.5": 0,
+      "latin_script_outputs": 0,
+      "empty_outputs": 0
+    }
+  },
+  "defect_rule": "(a) >= 1% of main-run hypotheses at the 200-token cap, (b) task/language not forced, (c) any audio-loading failure",
+  "defects": {
+    "truncation_at_token_cap": false,
+    "task_or_language_not_forced": false,
+    "audio_loading_failures": false
+  },
+  "implementation_defect_found": false,
+  "diagnostic_rows_budget_note": "Table 10 rows used max_new_tokens=128; 4 of the 300 sampled greedy hypotheses reach that budget when re-tokenized.",
+  "max_clip_seconds": 8.314
+}

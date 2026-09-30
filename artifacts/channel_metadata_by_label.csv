@@ -1,0 +1,14 @@
+feature,value,negative,positive,positive_rate
+sample_rate,16000,244,0,0.0
+sample_rate,44100,1250,1492,0.5441
+sample_rate,48000,505,505,0.5
+num_channels,1,1499,1497,0.4997
+num_channels,2,500,500,0.5
+audio_format,MP3,1755,1997,0.5322
+audio_format,OGG,244,0,0.0
+codec,mp3,1755,1997,0.5322
+codec,opus,244,0,0.0
+speaker_id,f1,500,500,0.5
+speaker_id,f2,500,500,0.5
+speaker_id,m1,499,499,0.5
+speaker_id,m2,500,498,0.499

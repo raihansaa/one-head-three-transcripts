@@ -1,0 +1,78 @@
+{
+  "normalization_version": "v1",
+  "n_label_rows": 1000,
+  "n_unique_sentence_ids": 1000,
+  "n_sentence_groups": 998,
+  "n_usable_recordings": 3996,
+  "n_expected_recordings": 4000,
+  "recordings_per_sentence": {
+    "3": 4,
+    "4": 996
+  },
+  "sentences_with_fewer_than_four": [
+    "si_0174",
+    "si_0225",
+    "si_0226",
+    "si_0942"
+  ],
+  "missing_recordings": [
+    "si_0174__m1",
+    "si_0225__m2",
+    "si_0226__m2",
+    "si_0942__m1"
+  ],
+  "label_balance": {
+    "positive": 500,
+    "negative": 500
+  },
+  "recordings_per_speaker": {
+    "f1": 1000,
+    "f2": 1000,
+    "m1": 998,
+    "m2": 998
+  },
+  "n_label_conflicts_within_sentence": 0,
+  "n_duplicate_audio_paths": 0,
+  "n_duplicate_file_hashes_across_utterances": 0,
+  "duplicate_hash_examples": {},
+  "n_redundant_copies_dropped": 737,
+  "all_dropped_copies_byte_identical": true,
+  "n_exact_duplicate_normalized_sentences": 0,
+  "n_empty_gold_transcripts": 0,
+  "n_sentences_without_bengali_characters": 0,
+  "sample_rates": {
+    "44100": 2742,
+    "48000": 1010,
+    "16000": 244
+  },
+  "channel_counts": {
+    "1": 2996,
+    "2": 1000
+  },
+  "audio_formats": {
+    "MP3": 3752,
+    "OGG": 244
+  },
+  "n_unreadable_audio": 0,
+  "n_silent_audio": 0,
+  "n_shorter_than_threshold": 0,
+  "duration_seconds": {
+    "min": 1.882,
+    "p05": 2.484,
+    "median": 3.503,
+    "p95": 5.229,
+    "max": 8.314,
+    "total_hours": 4.08
+  },
+  "annotation_notes": {
+    "changed": 6,
+    "Changed": 2
+  },
+  "near_duplicates": {
+    "n_pairs_jaccard_ge_0.5": 418,
+    "n_pairs_jaccard_ge_0.7": 60,
+    "n_sentences_in_a_pair_ge_0.7": 84,
+    "n_pairs_ge_0.7_with_opposite_labels": 13,
+    "n_sentence_groups_merged_by_token_identity": 2
+  }
+}

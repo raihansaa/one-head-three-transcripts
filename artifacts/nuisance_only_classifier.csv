@@ -1,0 +1,16 @@
+fold,n_test,macro_f1,accuracy,feature_set
+0,799,0.6735511831211903,0.690863579474343,primary (acquisition only)
+1,801,0.6486474100455664,0.66541822721598,primary (acquisition only)
+2,800,0.6764475258965787,0.69375,primary (acquisition only)
+3,796,0.6777114031594318,0.6934673366834171,primary (acquisition only)
+4,800,0.6672847085178759,0.68625,primary (acquisition only)
+0,799,0.4646421860078248,0.5644555694618273,metadata only (format/rate/channels)
+1,801,0.45141208156983453,0.5555555555555556,metadata only (format/rate/channels)
+2,800,0.539856675075624,0.55625,metadata only (format/rate/channels)
+3,796,0.5493228781442475,0.5653266331658291,metadata only (format/rate/channels)
+4,800,0.5435211121485631,0.56,metadata only (format/rate/channels)
+0,799,0.6853526248986079,0.685857321652065,"exploratory (+ duration, RMS, centroid)"
+1,801,0.6993393724037835,0.700374531835206,"exploratory (+ duration, RMS, centroid)"
+2,800,0.6846491014541005,0.68625,"exploratory (+ duration, RMS, centroid)"
+3,796,0.7245087116273556,0.7248743718592965,"exploratory (+ duration, RMS, centroid)"
+4,800,0.7027239804755157,0.705,"exploratory (+ duration, RMS, centroid)"

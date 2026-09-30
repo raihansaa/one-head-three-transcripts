@@ -1,0 +1,79 @@
+{
+  "normalization_version": "v1",
+  "wer_tokenization": "whitespace tokens on normalized text; punctuation removed",
+  "cer_tokenization": "extended grapheme clusters (regex \\X), spaces excluded",
+  "cer_grapheme_aware": true,
+  "aggregation": "corpus-level: total edit operations / total reference length",
+  "systems": [
+    {
+      "system": "whisper",
+      "display_name": "Whisper large-v3",
+      "n_utterances": 3996,
+      "wer": 0.6874674778849618,
+      "cer": 0.3595673206127385,
+      "substitution_rate": 0.5902813913461153,
+      "deletion_rate": 0.011527838930472722,
+      "insertion_rate": 0.08565824760837369,
+      "n_empty_hypotheses": 0,
+      "n_utterances_with_zero_wer": 10,
+      "median_utterance_wer": 0.6666666666666666,
+      "by_speaker": {
+        "f1": {
+          "wer": 0.7127319257837492,
+          "cer": 0.37738280620737796,
+          "n_utterances": 1000
+        },
+        "f2": {
+          "wer": 0.6676263595649392,
+          "cer": 0.3204102453954787,
+          "n_utterances": 1000
+        },
+        "m1": {
+          "wer": 0.6907546867489185,
+          "cer": 0.35698531389531446,
+          "n_utterances": 998
+        },
+        "m2": {
+          "wer": 0.6787431869188842,
+          "cer": 0.38353510895883774,
+          "n_utterances": 998
+        }
+      }
+    },
+    {
+      "system": "indic",
+      "display_name": "Bengali XLS-R (CTC, no LM)",
+      "n_utterances": 3996,
+      "wer": 0.27602769883520795,
+      "cer": 0.11124697661918839,
+      "substitution_rate": 0.23027658807989432,
+      "deletion_rate": 0.028419325141095946,
+      "insertion_rate": 0.01733178561421767,
+      "n_empty_hypotheses": 0,
+      "n_utterances_with_zero_wer": 801,
+      "median_utterance_wer": 0.25,
+      "by_speaker": {
+        "f1": {
+          "wer": 0.31190019193857965,
+          "cer": 0.12683241153412447,
+          "n_utterances": 1000
+        },
+        "f2": {
+          "wer": 0.2255278310940499,
+          "cer": 0.08290823175643022,
+          "n_utterances": 1000
+        },
+        "m1": {
+          "wer": 0.2672648614004166,
+          "cer": 0.09424928721286782,
+          "n_utterances": 998
+        },
+        "m2": {
+          "wer": 0.29945495351074064,
+          "cer": 0.14102771051923593,
+          "n_utterances": 998
+        }
+      }
+    }
+  ]
+}

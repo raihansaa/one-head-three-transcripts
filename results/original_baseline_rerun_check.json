@@ -1,0 +1,27 @@
+{
+  "published_file": "oof_predictions_crossasr.csv",
+  "rows_published": 155844,
+  "rows_rerun": 155844,
+  "rows_matched": 155844,
+  "max_abs_prob_positive_difference": 0.0,
+  "rows_with_any_difference": 0,
+  "identical_argmax_labels": 155844,
+  "per_condition_max_difference": {
+    "A1": 0.0,
+    "A2": 0.0,
+    "A3": 0.0,
+    "A4": 0.0,
+    "C1": 0.0,
+    "C2": 0.0,
+    "C3": 0.0,
+    "C4": 0.0,
+    "C5": 0.0,
+    "C6": 0.0,
+    "C7": 0.0,
+    "X1": 0.0,
+    "X2": 0.0
+  },
+  "device": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "torch_version": "2.11.0+cu128",
+  "bit_identical": true
+}

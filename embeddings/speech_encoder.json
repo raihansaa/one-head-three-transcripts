@@ -1,0 +1,13 @@
+{
+  "checkpoint": "facebook/wav2vec2-xls-r-300m",
+  "frozen": true,
+  "pooling": "mask-aware temporal mean and standard deviation, concatenated",
+  "embedding_dim": 2048,
+  "sample_rate": 16000,
+  "batch_size": 8,
+  "total_seconds": 813.1,
+  "transformers_version": "5.14.1",
+  "trained_on_banglamuse": false,
+  "shares_backbone_with_asr_b": true,
+  "revision": "1a640f32ac3e39899438a2931f9924c02f080a54"
+}

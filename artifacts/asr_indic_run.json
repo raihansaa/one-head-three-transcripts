@@ -1,0 +1,30 @@
+{
+  "system": "ASR-B",
+  "checkpoint": "arijitx/wav2vec2-xls-r-300m-bengali",
+  "revision": "45ed7c704f276acb9ed6ef234b66e67a1a2cb864",
+  "selection_note": "ai4bharat/indic-conformer-600m-multilingual is gated (HTTP 401) and NeMo-only; switched at the plan's decision point per section 9.2",
+  "language_specific": true,
+  "decoding": {
+    "strategy": "greedy CTC argmax",
+    "language_model": null,
+    "beam_size": 1,
+    "used_attention_mask": true,
+    "feat_extract_norm": "layer"
+  },
+  "device": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "precision": "float32",
+  "batch_size": 16,
+  "total_inference_seconds": 800.5,
+  "transformers_version": "5.14.1",
+  "torch_version": "2.11.0+cu128",
+  "fine_tuned_on_banglamuse": false,
+  "normalization_version": "v1",
+  "resampling_method": "librosa.load(sr=16000, mono=True, res_type='soxr_hq')",
+  "target_sample_rate": 16000,
+  "n_utterances": 3996,
+  "n_empty_normalized_outputs": 0,
+  "n_failed_utterances": 0,
+  "failed_utterance_ids": [],
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0"
+}

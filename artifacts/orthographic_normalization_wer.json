@@ -1,0 +1,31 @@
+{
+  "source": "csebuetnlp/normalizer",
+  "systems": {
+    "whisper": {
+      "original": {
+        "wer": 0.6874674778849618,
+        "cer": 0.3595673206127385
+      },
+      "canonicalized": {
+        "wer": 0.6874674778849618,
+        "cer": 0.3595673206127385
+      },
+      "n_hypotheses_altered": 4,
+      "wer_reduction": 0.0,
+      "cer_reduction": 0.0
+    },
+    "indic": {
+      "original": {
+        "wer": 0.27602769883520795,
+        "cer": 0.11124697661918839
+      },
+      "canonicalized": {
+        "wer": 0.27602769883520795,
+        "cer": 0.11124697661918839
+      },
+      "n_hypotheses_altered": 0,
+      "wer_reduction": 0.0,
+      "cer_reduction": 0.0
+    }
+  }
+}

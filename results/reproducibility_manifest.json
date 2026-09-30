@@ -1,0 +1,143 @@
+{
+  "label": "post-review analyses E1-E8",
+  "analysis_specification": "results/POST_REVIEW_ANALYSIS_PLAN.md",
+  "source_commit": "not generated inside a git checkout",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.11.0+cu128",
+    "cuda_device": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "transformers": "5.14.1",
+    "scikit_learn": "1.9.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "joblib": "1.5.3",
+    "lock_file": "requirements.txt"
+  },
+  "models": {
+    "asr_a": {
+      "checkpoint": "openai/whisper-large-v3",
+      "revision": "06f233fe06e710322aca913c1bc4249a0d71fce1",
+      "decoding": {
+        "language": "bn",
+        "task": "transcribe",
+        "num_beams": 2,
+        "early_stopping": true,
+        "do_sample": false,
+        "temperature": 0.0,
+        "return_timestamps": false,
+        "max_new_tokens": 200
+      }
+    },
+    "asr_b": {
+      "checkpoint": "arijitx/wav2vec2-xls-r-300m-bengali",
+      "revision": "45ed7c704f276acb9ed6ef234b66e67a1a2cb864",
+      "decoding": {
+        "strategy": "greedy CTC argmax",
+        "language_model": null,
+        "beam_size": 1,
+        "used_attention_mask": true,
+        "feat_extract_norm": "layer"
+      }
+    },
+    "text_encoder": {
+      "checkpoint": "csebuetnlp/banglabert",
+      "revision": "9ce791f330578f50da6bc52b54205166fb5d1c8c",
+      "pooling": "attention-mask-aware mean over last_hidden_state"
+    },
+    "speech_encoder": {
+      "checkpoint": "facebook/wav2vec2-xls-r-300m",
+      "revision": "1a640f32ac3e39899438a2931f9924c02f080a54",
+      "pooling": "mask-aware temporal mean and standard deviation, concatenated"
+    }
+  },
+  "protocol": {
+    "outer_folds": {
+      "splitter": "StratifiedKFold over sentence groups",
+      "n_splits": 5,
+      "shuffle": true,
+      "random_state": 42
+    },
+    "inner_validation": {
+      "fraction": 0.1,
+      "random_state": "1000 + fold",
+      "stratified": true
+    },
+    "head": {
+      "hidden_units": 256,
+      "dropout": 0.2,
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "batch_size": 64,
+      "max_epochs": 60,
+      "patience": 8,
+      "seeds": [
+        13,
+        42,
+        87
+      ]
+    },
+    "bootstrap": {
+      "iterations": 10000,
+      "seed": 20260807,
+      "unit": "sentence group, all recordings included, shared across conditions"
+    },
+    "threshold_grid": "0.000-1.000 step 0.001; ties -> closest to 0.5, then smaller",
+    "tfidf": {
+      "ngram_range": [
+        1,
+        2
+      ],
+      "tokenizer": "str.split",
+      "C_grid": [
+        0.1,
+        1.0,
+        10.0
+      ],
+      "max_iter": 10000
+    },
+    "permutation": {
+      "n_permutations": 1000,
+      "seed": 20260922
+    }
+  },
+  "run_order": [
+    "python scripts/post_review_heads.py          # P0 bitwise re-run + validation probabilities + E1 heads (GPU)",
+    "python scripts/post_review_thresholds.py     # E2",
+    "python scripts/post_review_lexical.py        # E3",
+    "python scripts/post_review_permutation.py    # E4",
+    "python scripts/post_review_whisper.py        # E5 (cached transcripts; no ASR run)",
+    "python scripts/post_review_speaker_holdout.py  # E8 (GPU)",
+    "python scripts/post_review_statistics.py     # P0 paper check, E1-E3 comparisons, E6, E7",
+    "python scripts/post_review_manifest.py       # this manifest"
+  ],
+  "result_sha256": {
+    "results/condition_scores.csv": "7e08cdf1f491a39543b7935c84bb5869c305e35327f2a2659175c4b785011222",
+    "results/lexical_baseline_folds.csv": "68795fe05af0474a6841b1dc6f957cce9d2c33a60e2fed0b8541f546e3b7ce1f",
+    "results/lexical_baseline_oof.csv": "8033bf1013b1f833f3c75768e66790bc73f6f3877413ce2104a4900ff540204b",
+    "results/nuisance_fusion_oof.csv": "c2ec8ceeebe625289e6f3a26493b9fb6df58f07eab540edf680573de594f22e9",
+    "results/nuisance_matched_fusion_oof.csv": "6b94d4c69cb95ae3a2e64ecb0b6b48d19bbef58c2d0dae9d4a43d2e089d02bac",
+    "results/nuisance_permutation_null.json": "deb1d0e3e9c86c73110accbf5bb277fdcc05da787b05d26a8c850fa0d32fd428",
+    "results/nuisance_permutation_scores.csv": "9e0736786b1302e8d04b6e4e7586cec534390b5e16c1488951f54b9002a64bb8",
+    "results/nuisance_pipeline_checks.json": "281976c1b4389683d09181c167aeacdab0034916d9c1960b58609492e4907f57",
+    "results/original_baseline_rerun_check.json": "e496be0e7f45eb72a8202e18f81e758aac846797b066bcf7716be02cf8809c62",
+    "results/original_baseline_validation.csv": "599d1f4c6237671783f5fca868df0e889dcc0044787a4a66cc2f1088f15f64f9",
+    "results/p0_published_baseline_check.json": "4e28be26d43a1a9cd71b772cb02b277e61d1af7c8de1994b82887f6241621e17",
+    "results/paired_gains_and_recovery_intervals.csv": "496d6d1b06c0c86daf766ea9df2d3013b60d028f36f3fb3f146d15d70669067c",
+    "results/paper_numbers.json": "18dd1fff7c1604fb200cd73d08bd47f9c27a7e021890db2c758a380af91e9c54",
+    "results/POST_REVIEW_ANALYSIS_PLAN.md": "f803cdb41b1659598a5c3bbce67ef0d311a93c347ed240e958f83104f0f93c98",
+    "results/seed_paired_differences.csv": "550705b5008fd7418f02b1e7a265a12b02d8806230f421b6784e0bb3a5f40584",
+    "results/seed_scores.csv": "6e8cd7ea624ac42bd7ad9585a4fdcecc669de41396f86668cd9ed07ea2eb070f",
+    "results/speaker_holdout_oof.csv": "54fd7e45fe5714b1c675bede190e5158de39ca64abed2a09565b648be590174b",
+    "results/speaker_holdout_results.csv": "9ef92f678cd14484b779949fead801e977e09c493d37243086de4a5752b4b7ce",
+    "results/threshold_comparison.csv": "d33ab8486b44b4f643dd1e3fde1fabc89031b716267ffb0a8a9c7bfffec6d01b",
+    "results/threshold_predictions.csv": "6ffe3e88b7827d13451567120bc9881b765ef77725057784202b1f2cd7f3e9a7",
+    "results/thresholds_by_fold.csv": "76a800204af7e9e2ff3a15368ec11a0d30ea71689162ac4b0a077b9417f68779",
+    "results/whisper_budget_note.json": "b09b5033ddd4e8f2d0bcd59e7c585e49dcbf0295958194f146b739705fbffcac",
+    "results/whisper_decoding_validity.json": "3b0803b8eb385db3f37fc5711a7de17e3b9c53df2c7e2653b0c61000c6568b6b",
+    "results/whisper_diagnostic_sample_ids.csv": "631095f8996021604bbae0b9cb5c850b6b5f6c89ba06b30d62072595ff802bd5",
+    "results/whisper_failure_sample.csv": "829dc99d84850bb8e3cb0f36b67c51569812c4cbf83790fc07bef33abe651884",
+    "results/whisper_generation_manifest.json": "5eff60029259f5d65bcc58e54e488ebb8716fec0ae6878bf4aa999c6689814ca",
+    "results/whisper_same_sample_diagnostic.csv": "504330e727b7df6cdaa1355b580b43097f5514b3cc8df314266a888ded3b5480"
+  }
+}

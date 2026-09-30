@@ -1,0 +1,7 @@
+{
+  "label": "descriptive, computed after the frozen E5 audit to caveat budget comparability",
+  "beam2_sample_hypotheses_retokenized_ge_127": 5,
+  "beam2_sample_n": 300,
+  "latin_script_among_20_highest_wer": 11,
+  "loop_flagged_among_20_highest_wer": 0
+}
