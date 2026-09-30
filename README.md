@@ -22,13 +22,13 @@ speaker-and-sentence holdout.
 
 | Path | Contents |
 |---|---|
-| `scripts/` | The full pipeline: corpus audit, splits and leakage assertions, ASR, embeddings, classifier heads, bootstrap statistics, post-review analyses and every number printed in the paper |
+| `scripts/` | The full pipeline: corpus audit, splits and leakage assertions, ASR, embeddings, classifier heads, bootstrap statistics, secondary analyses and every number printed in the paper |
 | `manifests/banglamuse.csv` | The 3,996 usable recordings: sentence group, speaker, label, normalized gold transcript, audio metadata and MD5 hash |
 | `splits/` | Sentence-grouped 5-fold outer splits and inner-validation groups |
 | `transcripts/` | Raw and normalized ASR output for every recording: `whisper_*` (beam 2, 200-token budget) and `indic_*` (Bengali XLS-R, greedy CTC) are used throughout; `whisper_greedy_*` (greedy, 128 tokens) is the cached greedy run of Appendix A.16; `*_orthnorm` are the canonicalized texts of Table 16 |
-| `predictions/` | Per-recording, per-seed out-of-fold probabilities for every original condition |
-| `artifacts/` | Original (pre-review) results the paper uses: ASR metrics, bootstrap comparisons, corpus and acquisition audits, acquisition features, per-speaker, WER-bin and error-pattern tables |
-| `results/` | Post-review analyses: specification, predictions, statistics, the paper's printed numbers (`paper_numbers.json`) and a hash manifest (`reproducibility_manifest.json`) |
+| `predictions/` | Per-recording, per-seed out-of-fold probabilities for every primary condition |
+| `artifacts/` | Primary-analysis results the paper uses: ASR metrics, bootstrap comparisons, corpus and acquisition audits, acquisition features, per-speaker, WER-bin and error-pattern tables |
+| `results/` | Secondary analyses: specification, predictions, statistics, the paper's printed numbers (`paper_numbers.json`) and a hash manifest (`reproducibility_manifest.json`) |
 | `embeddings/` | Metadata of the frozen text and speech encoders (the `.npz` embeddings are a release asset; see below) |
 
 Condition IDs follow the paper: C1 speech only; C2–C4 one gold-trained text head
@@ -38,8 +38,8 @@ transfer; N5–N7 and NA3–NA4 the text+nuisance control; T3/T4/T6/T7 threshold
 adaptation.
 
 The prediction files: `oof_predictions_final.csv` (C1–C7 and A1–A4, seeds 13, 42 and
-87) feeds the original analyses; `oof_predictions_crossasr.csv` is the same run with
-X1–X2 added (its C and A rows are bit-identical) and is the file the post-review
+87) feeds the primary analyses; `oof_predictions_crossasr.csv` is the same run with
+X1–X2 added (its C and A rows are bit-identical) and is the file the secondary-analysis
 scripts build on; `oof_predictions_orthnorm.csv` adds N2–N4, the orthographic
 canonicalization check of Table 16.
 
@@ -74,7 +74,7 @@ python -m venv .venv
 (On Windows the interpreter is `.venv\Scripts\python.exe`.) Run every script from the
 repository root, e.g. `python scripts/validate_splits.py`. `requirements.txt` pins the
 direct dependencies; `requirements-lock.txt` is the complete environment (`pip freeze`)
-in which the post-review analyses ran and the original heads were re-trained bit for
+in which the secondary analyses ran and the primary heads were re-trained bit for
 bit (Python 3.12.10, Windows 11). `recording_session_audit.py` also needs `ffprobe`
 (FFmpeg) on the `PATH`.
 
@@ -92,13 +92,13 @@ python scripts/analyze_wer_bins.py --predictions oof_predictions_final.csv      
 python scripts/extract_sentiment_flips.py --predictions oof_predictions_final.csv  # Appendix A.15
 python scripts/orthographic_results.py         # Table 16
 
-python scripts/post_review_thresholds.py       # threshold-only adaptation
-python scripts/post_review_lexical.py          # TF-IDF + logistic regression
-python scripts/post_review_permutation.py      # 1,000-permutation null
-python scripts/post_review_whisper.py          # beam-2 row, decoding audit
-python scripts/post_review_statistics.py       # paired intervals, seeds, recovery ratios
+python scripts/secondary_thresholds.py         # threshold-only adaptation
+python scripts/secondary_lexical.py            # TF-IDF + logistic regression
+python scripts/secondary_permutation.py        # 1,000-permutation null
+python scripts/secondary_whisper.py            # beam-2 row, decoding audit
+python scripts/secondary_statistics.py         # paired intervals, seeds, recovery ratios
 python scripts/paper_numbers.py                # every number printed in the paper
-python scripts/post_review_manifest.py         # settings and SHA-256 of every file in results/
+python scripts/secondary_manifest.py           # settings and SHA-256 of every file in results/
 ```
 
 These scripts are deterministic: re-running them reproduces every released file in
@@ -106,7 +106,7 @@ These scripts are deterministic: re-running them reproduces every released file 
 the manifest, except that one value in `artifacts/wer_bin_analysis.csv` differs in its
 sixteenth significant digit (no reported number changes). They also write a few
 secondary tables and Markdown summaries that are not included here because nothing in
-the paper uses them. `post_review_whisper.py` reads the Whisper tokenizer and
+the paper uses them. `secondary_whisper.py` reads the Whisper tokenizer and
 generation config from the local Hugging Face cache; fetch them once with
 
 ```bash
@@ -138,8 +138,8 @@ python scripts/recording_session_audit.py
 python scripts/recording_condition_audit.py
 python scripts/extract_sentiment_flips.py --predictions oof_predictions_final.csv
 
-python scripts/post_review_heads.py            # re-trains every head, checks the released predictions bit for bit
-python scripts/post_review_speaker_holdout.py  # joint speaker-and-sentence holdout
+python scripts/secondary_heads.py              # re-trains every head, checks the released predictions bit for bit
+python scripts/secondary_speaker_holdout.py    # joint speaker-and-sentence holdout
 ```
 
 then the commands of the previous section. Raw ASR output is treated as immutable:
@@ -164,16 +164,16 @@ scripts.
 | Paper | Script | Output |
 |---|---|---|
 | Table 1 (ASR quality) | `calculate_asr_metrics.py` | `artifacts/asr_metrics.json` |
-| Table 2 (substitution and nuisance control) | `run_conditions.py`, `post_review_heads.py`, `post_review_statistics.py` | `predictions/oof_predictions_crossasr.csv`, `results/nuisance_fusion_oof.csv`, `results/paired_gains_and_recovery_intervals.csv` |
-| Figure 2 (plotted values) | `post_review_statistics.py` | `results/condition_scores.csv`, `results/paired_gains_and_recovery_intervals.csv` |
+| Table 2 (substitution and nuisance control) | `run_conditions.py`, `secondary_heads.py`, `secondary_statistics.py` | `predictions/oof_predictions_crossasr.csv`, `results/nuisance_fusion_oof.csv`, `results/paired_gains_and_recovery_intervals.csv` |
+| Figure 2 (plotted values) | `secondary_statistics.py` | `results/condition_scores.csv`, `results/paired_gains_and_recovery_intervals.csv` |
 | Table 3 (WER bins) | `analyze_wer_bins.py` | `artifacts/wer_bin_analysis.csv` |
-| Table 4 (threshold versus retraining) | `post_review_thresholds.py`, `post_review_statistics.py` | `results/threshold_comparison.csv`, `results/thresholds_by_fold.csv` |
-| Table 5 (acquisition audit) | `recording_condition_audit.py`, `post_review_permutation.py`, `post_review_speaker_holdout.py` | `artifacts/nuisance_only_classifier.csv`, `results/nuisance_permutation_null.json`, `results/speaker_holdout_results.csv` |
-| Appendix Tables 6, 9, 10 | `post_review_statistics.py` | `results/condition_scores.csv`, `results/paired_gains_and_recovery_intervals.csv`, `results/seed_scores.csv` |
-| Appendix Tables 7, 8 | `paper_numbers.py` (recomputes the intervals from the predictions), `post_review_statistics.py` | `results/paper_numbers.json`, `results/condition_scores.csv` |
-| Appendix Table 11 | `post_review_speaker_holdout.py` | `results/speaker_holdout_results.csv` |
+| Table 4 (threshold versus retraining) | `secondary_thresholds.py`, `secondary_statistics.py` | `results/threshold_comparison.csv`, `results/thresholds_by_fold.csv` |
+| Table 5 (acquisition audit) | `recording_condition_audit.py`, `secondary_permutation.py`, `secondary_speaker_holdout.py` | `artifacts/nuisance_only_classifier.csv`, `results/nuisance_permutation_null.json`, `results/speaker_holdout_results.csv` |
+| Appendix Tables 6, 9, 10 | `secondary_statistics.py` | `results/condition_scores.csv`, `results/paired_gains_and_recovery_intervals.csv`, `results/seed_scores.csv` |
+| Appendix Tables 7, 8 | `paper_numbers.py` (recomputes the intervals from the predictions), `secondary_statistics.py` | `results/paper_numbers.json`, `results/condition_scores.csv` |
+| Appendix Table 11 | `secondary_speaker_holdout.py` | `results/speaker_holdout_results.csv` |
 | Appendix Tables 12, 13 | `asr_quality_by_class.py`, `analyze_wer_bins.py` | `artifacts/asr_quality_by_class.csv`, `artifacts/speaker_analysis.csv` |
-| Appendix Table 14 | `diagnose_whisper.py`, `post_review_whisper.py` | `artifacts/whisper_decoding_diagnostic.json`, `results/whisper_same_sample_diagnostic.csv`, `results/whisper_generation_manifest.json` |
+| Appendix Table 14 | `diagnose_whisper.py`, `secondary_whisper.py` | `artifacts/whisper_decoding_diagnostic.json`, `results/whisper_same_sample_diagnostic.csv`, `results/whisper_generation_manifest.json` |
 | Appendix A.15 (error patterns) | `extract_sentiment_flips.py` | `artifacts/sentiment_flips.csv` |
 | Appendix Tables 15, 16 | `recording_session_audit.py`, `orthographic_results.py` | `artifacts/recording_session_audit.md`, `artifacts/orthographic_normalization_results.csv` |
 | Every printed number | `paper_numbers.py` | `results/paper_numbers.json` |
@@ -182,18 +182,17 @@ Scores are pooled recording-level out-of-fold macro-F1 on seed-averaged probabil
 (seeds 13, 42, 87). Intervals are paired sentence-group bootstrap intervals (10,000
 resamples, seed 20260807). The printed numbers are rounded once, from full precision.
 
-## Post-review analyses
+## Secondary analyses
 
-The analyses requested during peer review were specified in
-`results/POST_REVIEW_ANALYSIS_PLAN.md`, together with the `post_review_*.py` scripts,
-before any of them was run; they were specified after the original results were
-known and are labelled post-review in the paper. Before interpreting any new
-condition, `post_review_heads.py` re-trains every original head and requires its test
+The secondary analyses were specified in `results/SECONDARY_ANALYSIS_PLAN.md`,
+together with the `secondary_*.py` scripts, before any of them was run, but after
+the primary results were known. Before interpreting any new condition,
+`secondary_heads.py` re-trains every primary head and requires its test
 probabilities to match the released predictions bit for bit.
 `results/reproducibility_manifest.json` records the settings, software versions,
 model revisions and SHA-256 hashes of every file in `results/`. The specification's
-header refers to the authors' internal revision plan, which is not part of this
-release.
+content is unchanged since it was frozen (only the file was renamed); its header
+refers to an internal planning document that is not part of this release.
 
 ## Licenses
 

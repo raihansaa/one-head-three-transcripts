@@ -1,5 +1,5 @@
 # Complete environment (pip freeze of the project virtual environment) in which the
-# post-review analyses ran and the original heads were re-trained bit for bit:
+# secondary analyses ran and the primary heads were re-trained bit for bit:
 # Python 3.12.10, Windows 11, NVIDIA RTX 5060 Laptop GPU, CUDA 12.8.
 # requirements.txt lists the direct dependencies only.
 --extra-index-url https://download.pytorch.org/whl/cu128

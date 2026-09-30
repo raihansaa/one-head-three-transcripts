@@ -1,4 +1,4 @@
-"""Threshold-only adaptation (post-review analysis plan, E2).
+"""Threshold-only adaptation (secondary-analysis plan, E2).
 
 Question: how much of the gain from ASR-matched retraining does a changed decision
 threshold alone achieve? Weights and probabilities are never touched. Per outer
@@ -17,7 +17,7 @@ The inner-validation split was already used for early stopping; choosing a
 threshold on it is a second, pre-specified model-selection step, not a fresh
 validation study.
 
-Reads results/original_baseline_validation.csv (post_review_heads.py) and the
+Reads results/original_baseline_validation.csv (secondary_heads.py) and the
 published test probabilities. Writes:
     results/thresholds_by_fold.csv
     results/threshold_predictions.csv

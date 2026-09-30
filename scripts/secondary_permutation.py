@@ -1,6 +1,6 @@
-"""Whole-pipeline permutation null for the nuisance classifier (post-review analysis plan, E4).
+"""Whole-pipeline permutation null for the nuisance classifier (secondary-analysis plan, E4).
 
-Post-review. The Table 5 classifier reaches 0.6687 mean-fold
+Secondary analysis. The Table 5 classifier reaches 0.6687 mean-fold
 macro-F1 from acquisition features. The paper compared that to "chance 0.500";
 this replaces that with an empirical null.
 

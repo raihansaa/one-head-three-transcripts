@@ -1,4 +1,4 @@
-"""Post-review heads (post-review analysis plan: P0, E1, input for E2).
+"""Heads for the secondary analyses (secondary-analysis plan: P0, E1, input for E2).
 
 One pass over the original folds and seeds that does three things:
 

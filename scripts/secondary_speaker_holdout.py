@@ -1,6 +1,6 @@
-"""Joint speaker-and-sentence holdout (post-review analysis plan, E8).
+"""Joint speaker-and-sentence holdout (secondary-analysis plan, E8).
 
-Post-review speaker-transfer diagnostic. Plain
+Secondary speaker-transfer diagnostic. Plain
 leave-one-speaker-out would still share sentences: the other three speakers read
 the same 1,000 sentences, so the held-out speaker's sentences would be in
 training. Here a recording is tested only when BOTH its speaker and its sentence
@@ -40,7 +40,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
 from cluster_bootstrap import full_metrics
-from post_review_permutation import design_matrix
+from secondary_permutation import design_matrix
 from run_conditions import (
     FINAL_SEEDS,
     MANIFEST_FILE,
@@ -145,8 +145,8 @@ def main() -> None:
 
     results = []
     for model, protocol, frame in (
-        ("speech_head", "joint speaker-and-sentence holdout (post-review)", joint[joint["model"] == "speech_head"]),
-        ("nuisance_classifier", "joint speaker-and-sentence holdout (post-review)", joint[joint["model"] == "nuisance_classifier"]),
+        ("speech_head", "joint speaker-and-sentence holdout (secondary)", joint[joint["model"] == "speech_head"]),
+        ("nuisance_classifier", "joint speaker-and-sentence holdout (secondary)", joint[joint["model"] == "nuisance_classifier"]),
         ("speech_head (C1)", "shared-speaker sentence-grouped CV (original protocol)", c1.reset_index()),
         ("nuisance_classifier", "shared-speaker sentence-grouped CV (original protocol)", shared),
     ):

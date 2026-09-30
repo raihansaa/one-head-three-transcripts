@@ -1,6 +1,6 @@
-"""Lexical baseline: TF-IDF + logistic regression on gold text (post-review analysis plan, E3).
+"""Lexical baseline: TF-IDF + logistic regression on gold text (secondary-analysis plan, E3).
 
-Post-review. Puts the near-ceiling oracle score (C2) in
+Secondary analysis. Puts the near-ceiling oracle score (C2) in
 context: how far do plain word and bigram counts get under the same protocol?
 
 Everything mirrors C2 so the paired difference is meaningful:

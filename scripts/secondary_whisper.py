@@ -1,6 +1,6 @@
-"""Whisper beam-2 diagnostic row and decoding audit (post-review analysis plan, E5).
+"""Whisper beam-2 diagnostic row and decoding audit (secondary-analysis plan, E5).
 
-Post-review. The decoding diagnostic (paper Table 14) compared greedy and beam 5 on a
+Secondary analysis. The decoding diagnostic (paper Table 14) compared greedy and beam 5 on a
 300-utterance sample, but the experiments decode with beam 2, which was never
 measured on that sample. This:
 

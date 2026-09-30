@@ -1,10 +1,10 @@
-"""Reproducibility manifest for the post-review analyses .
+"""Reproducibility manifest for the secondary analyses.
 
 Records the environment, model revisions, every seed and fixed setting the
-post_review_*.py scripts use, the order to run them in, and a SHA-256 for every
+secondary_*.py scripts use, the order to run them in, and a SHA-256 for every
 file in results/, so a later check can tell whether any reported number moved.
 
-    python scripts/post_review_manifest.py
+    python scripts/secondary_manifest.py
 
 Writes results/reproducibility_manifest.json
 """
@@ -27,8 +27,8 @@ import transformers
 
 import build_folds
 import cluster_bootstrap
-import post_review_lexical
-import post_review_permutation
+import secondary_lexical
+import secondary_permutation
 import run_conditions
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -36,14 +36,14 @@ RESULT_DIR = REPO_ROOT / "results"
 MANIFEST_FILE = RESULT_DIR / "reproducibility_manifest.json"
 
 RUN_ORDER = [
-    "python scripts/post_review_heads.py          # P0 bitwise re-run + validation probabilities + E1 heads (GPU)",
-    "python scripts/post_review_thresholds.py     # E2",
-    "python scripts/post_review_lexical.py        # E3",
-    "python scripts/post_review_permutation.py    # E4",
-    "python scripts/post_review_whisper.py        # E5 (cached transcripts; no ASR run)",
-    "python scripts/post_review_speaker_holdout.py  # E8 (GPU)",
-    "python scripts/post_review_statistics.py     # P0 paper check, E1-E3 comparisons, E6, E7",
-    "python scripts/post_review_manifest.py       # this manifest",
+    "python scripts/secondary_heads.py            # P0 bitwise re-run + validation probabilities + E1 heads (GPU)",
+    "python scripts/secondary_thresholds.py       # E2",
+    "python scripts/secondary_lexical.py          # E3",
+    "python scripts/secondary_permutation.py      # E4",
+    "python scripts/secondary_whisper.py          # E5 (cached transcripts; no ASR run)",
+    "python scripts/secondary_speaker_holdout.py  # E8 (GPU)",
+    "python scripts/secondary_statistics.py       # P0 paper check, E1-E3 comparisons, E6, E7",
+    "python scripts/secondary_manifest.py         # this manifest",
 ]
 
 
@@ -67,8 +67,8 @@ def main() -> None:
     whisper, indic = read_json("artifacts/asr_whisper_run.json"), read_json("artifacts/asr_indic_run.json")
     text, speech = read_json("embeddings/text_encoder.json"), read_json("embeddings/speech_encoder.json")
     manifest = {
-        "label": "post-review analyses E1-E8",
-        "analysis_specification": "results/POST_REVIEW_ANALYSIS_PLAN.md",
+        "label": "secondary analyses E1-E8",
+        "analysis_specification": "results/SECONDARY_ANALYSIS_PLAN.md",
         "source_commit": git("rev-parse", "HEAD") or "not generated inside a git checkout",
         "environment": {
             "python": sys.version.split()[0], "platform": platform.platform(),
@@ -95,10 +95,10 @@ def main() -> None:
             "bootstrap": {"iterations": cluster_bootstrap.N_BOOTSTRAP, "seed": cluster_bootstrap.BOOTSTRAP_SEED,
                           "unit": "sentence group, all recordings included, shared across conditions"},
             "threshold_grid": "0.000-1.000 step 0.001; ties -> closest to 0.5, then smaller",
-            "tfidf": {"ngram_range": [1, 2], "tokenizer": "str.split", "C_grid": list(post_review_lexical.C_GRID),
-                      "max_iter": post_review_lexical.MAX_ITER},
-            "permutation": {"n_permutations": post_review_permutation.N_PERMUTATIONS,
-                            "seed": post_review_permutation.PERMUTATION_SEED},
+            "tfidf": {"ngram_range": [1, 2], "tokenizer": "str.split", "C_grid": list(secondary_lexical.C_GRID),
+                      "max_iter": secondary_lexical.MAX_ITER},
+            "permutation": {"n_permutations": secondary_permutation.N_PERMUTATIONS,
+                            "seed": secondary_permutation.PERMUTATION_SEED},
         },
         "run_order": RUN_ORDER,
         "result_sha256": {

@@ -1,6 +1,6 @@
-"""Post-review statistics (post-review analysis plan: P0 check, E1-E3 comparisons, E6, E7).
+"""Statistics for the secondary analyses (secondary-analysis plan: P0 check, E1-E3 comparisons, E6, E7).
 
-Post-review. Everything uses the original estimator: pooled
+Secondary analysis. Everything uses the primary estimator: pooled
 recording-level out-of-fold macro-F1 on seed-averaged probabilities, and the
 original 10,000-iteration paired sentence-group bootstrap (seed 20260807). The
 row order and resampling are identical to cluster_bootstrap.py, so every
@@ -12,8 +12,8 @@ predictions, never by dividing interval endpoints, and are neither clipped nor
 filtered. They are conditional on the fitted heads, splits and selected
 thresholds; seed variability is reported separately (E6).
 
-Reads the published predictions plus results/ from post_review_heads.py,
-post_review_thresholds.py and post_review_lexical.py. Writes:
+Reads the published predictions plus results/ from secondary_heads.py,
+secondary_thresholds.py and secondary_lexical.py. Writes:
     results/p0_published_baseline_check.json
     results/condition_scores.csv
     results/seed_scores.csv
